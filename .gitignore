@@ -22,3 +22,9 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# temporary files from sync script
+*.tmp
+*.temp
+src/data/topics.ts.new
+src/data/topics.ts.tmp
