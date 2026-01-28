@@ -5,6 +5,7 @@
 **Ngobrolin Web Topic Picker** is a static web application designed for selecting podcast discussion topics. The application provides an interactive interface for browsing and randomly selecting topics from the Ngobrolin podcast's GitHub Discussions repository.
 
 ### Key Features
+
 - **Random Topic Picker**: Click-to-select functionality with visual animation
 - **Spin the Wheel**: Interactive wheel interface for fun topic selection
 - **Topic Browsing**: Grid view of all topics with sorting capabilities
@@ -18,6 +19,7 @@
 ## Technology Stack
 
 ### Core Technologies
+
 - **Astro 5.16.15**: Modern static site generator with component-based architecture
 - **Tailwind CSS 4.1.18**: Utility-first CSS framework for rapid UI development
   - Uses Vite plugin integration (`@tailwindcss/vite`)
@@ -25,12 +27,14 @@
 - **Vite**: Build tool and development server (included with Astro)
 
 ### Supporting Libraries
+
 - **@astrojs/node 9.5.2**: Node.js integration for API routes
 - **cheerio 1.2.0**: HTML parsing for GitHub Discussions scraping
 
 ## Architecture
 
 ### Static-First Design Philosophy
+
 The application is built with a static-first approach:
 
 1. **Static Data Source**: Topics are stored in `/src/data/topics.ts` as a TypeScript array
@@ -92,17 +96,20 @@ ngobrolin-web-topic-picker/
 ### Key Files Explained
 
 #### `/src/data/topics.ts`
+
 - **Purpose**: Single source of truth for all topics
 - **Format**: TypeScript array of `Topic` objects
 - **Import**: Used directly in `index.astro` for initial render
 - **Update**: Manually maintained or updated via GitHub sync
 
 #### `/src/lib/topicHistory.ts`
+
 - **Purpose**: localStorage utility module for pick history
 - **Functions**: getPickedTopicIds(), addPickedTopic(), isTopicPicked(), clearHistory()
 - **Usage**: Imported by index.astro for history management
 
 #### `/src/pages/index.astro`
+
 - **Purpose**: Main application interface
 - **Contains**: HTML structure, client-side JavaScript, and styling
 - **Features**:
@@ -114,17 +121,20 @@ ngobrolin-web-topic-picker/
   - History tracking and reset
 
 #### `/src/pages/api/topics.ts`
+
 - **Purpose**: Optional API route for live GitHub data
 - **Usage**: Called only when user clicks "Sync from GitHub" button
 - **Function**: Scrapes GitHub Discussions and returns updated topics
 
 #### `/src/types/topic.ts`
+
 - **Purpose**: TypeScript interface definition
 - **Interface**: `Topic` with properties (id, title, url, author, votes, comments, category)
 
 ## Development Setup
 
 ### Prerequisites
+
 - Node.js 18+ (recommended)
 - npm or yarn package manager
 
@@ -195,17 +205,17 @@ Users can clear all pick history by clicking the "Reset History" button that app
 Topics should be added to `/src/data/topics.ts`:
 
 ```typescript
-import type { Topic } from '../types/topic';
+import type { Topic } from "../types/topic";
 
 export const topics: Topic[] = [
   {
-    id: 95,                      // Unique discussion ID
-    title: "Your Topic Title",   // Discussion title
+    id: 95, // Unique discussion ID
+    title: "Your Topic Title", // Discussion title
     url: "https://github.com/orgs/ngobrolin/discussions/95",
-    author: "username",          // GitHub username
-    votes: 0,                    // Current vote count
-    comments: 0,                 // Current comment count
-    category: "optional"         // Optional category field
+    author: "username", // GitHub username
+    votes: 0, // Current vote count
+    comments: 0, // Current comment count
+    category: "optional", // Optional category field
   },
   // ... existing topics
 ];
@@ -213,19 +223,20 @@ export const topics: Topic[] = [
 
 ### Topic Object Properties
 
-| Property | Type | Required | Description |
-|----------|------|----------|-------------|
-| `id` | `number` | Yes | Unique GitHub Discussion ID |
-| `title` | `string` | Yes | Discussion title |
-| `url` | `string` | Yes | Full URL to GitHub Discussion |
-| `author` | `string` | Yes | GitHub username of author |
-| `votes` | `number` | Yes | Number of upvotes |
-| `comments` | `number` | Yes | Number of comments |
-| `category` | `string` | No | Optional category tag |
+| Property   | Type     | Required | Description                   |
+| ---------- | -------- | -------- | ----------------------------- |
+| `id`       | `number` | Yes      | Unique GitHub Discussion ID   |
+| `title`    | `string` | Yes      | Discussion title              |
+| `url`      | `string` | Yes      | Full URL to GitHub Discussion |
+| `author`   | `string` | Yes      | GitHub username of author     |
+| `votes`    | `number` | Yes      | Number of upvotes             |
+| `comments` | `number` | Yes      | Number of comments            |
+| `category` | `string` | No       | Optional category tag         |
 
 ### GitHub Sync Method (Optional)
 
 Users can click the "Sync from GitHub" button to fetch live data from GitHub Discussions. This:
+
 - Calls `/api/topics` endpoint
 - Scrapes the latest discussions
 - Updates the client-side state
@@ -238,24 +249,28 @@ Users can click the "Sync from GitHub" button to fetch live data from GitHub Dis
 #### Core Principles
 
 1. **KEEP IT STATIC**
+
    - Do NOT add automatic fetching on page load
    - Do NOT convert to SSR (Server-Side Rendering)
    - Do NOT add build-time data fetching
    - Topics must come from `/src/data/topics.ts` initially
 
 2. **DATA SOURCE RULES**
+
    - Default data source: `/src/data/topics.ts`
    - API routes are OPTIONAL enhancements only
    - Never require the API for the app to function
    - The app must work with static data alone
 
 3. **STYLING GUIDELINES**
+
    - Use Tailwind CSS utility classes
    - Follow existing color scheme (purple/pink gradients)
    - Maintain responsive design patterns
    - Use existing Tailwind classes from `index.astro`
 
 4. **COMPONENT PATTERNS**
+
    - Create reusable Astro components in `/src/components/`
    - Use `.astro` files for components with HTML/JS
    - Use `.ts` files for pure logic/utilities
@@ -293,19 +308,21 @@ Users can click the "Sync from GitHub" button to fetch live data from GitHub Dis
 #### Example: Adding a Feature
 
 Good (Static-First):
+
 ```typescript
 // Add to client-side script
 function filterByAuthor(author: string) {
-  const filtered = staticTopics.filter(t => t.author === author);
+  const filtered = staticTopics.filter((t) => t.author === author);
   renderTopics(filtered);
 }
 ```
 
 Bad (Breaking Architecture):
+
 ```typescript
 // Don't do this - removes static data
 async function loadTopics() {
-  const response = await fetch('/api/topics');
+  const response = await fetch("/api/topics");
   topics = await response.json();
 }
 ```
@@ -321,6 +338,7 @@ async function loadTopics() {
 #### Testing Changes
 
 Before submitting changes:
+
 1. Run `npm run dev` to test locally
 2. Verify static data loads correctly
 3. Test all interactive features
@@ -331,26 +349,31 @@ Before submitting changes:
 #### Common Tasks
 
 **Add a new topic:**
+
 1. Open `/src/data/topics.ts`
 2. Add new topic object to the array
 3. Ensure unique `id` and valid `url`
 
 **Create a new component:**
+
 1. Create file in `/src/components/`
 2. Use `.astro` extension for UI components
 3. Import and use in pages or other components
 
 **Add client-side interactivity:**
+
 1. Add to `<script>` tag in `.astro` files
 2. Use DOM APIs directly (no framework needed)
 3. Access static data via imports
 
 **Update styles:**
+
 1. Use existing Tailwind utility classes
 2. Check `index.astro` for color/spacing patterns
 3. Maintain responsive breakpoints (md:, lg:)
 
 **Reset topic pick history:**
+
 - Click "Reset History" button in sort controls
 - Confirms with dialog before clearing
 - All topics become available for picking again
@@ -360,6 +383,7 @@ Before submitting changes:
 ### Static Hosting (Recommended)
 
 The app can be deployed to any static hosting service:
+
 - Vercel
 - Netlify
 - GitHub Pages
@@ -374,6 +398,7 @@ npm run build
 ### Node.js Hosting
 
 If using the API route for GitHub sync:
+
 - Deploy to Node.js hosting (Vercel, Netlify, Railway)
 - Ensure serverless function support
 - The app still works statically if API fails
@@ -383,16 +408,19 @@ If using the API route for GitHub sync:
 ### Common Issues
 
 **Topics not loading:**
+
 - Verify `/src/data/topics.ts` exists and is valid
 - Check browser console for errors
 - Ensure TypeScript compilation succeeded
 
 **Build errors:**
+
 - Run `npm install` to ensure dependencies
 - Check TypeScript strict mode violations
 - Verify all imports are correct
 
 **Styling issues:**
+
 - Confirm Tailwind CSS is configured
 - Check browser compatibility
 - Verify utility class names are correct
