@@ -18,10 +18,29 @@ npm run sync-topics
 - Set the `GITHUB_TOKEN` environment variable with your GitHub Personal Access Token
 - The token must have the `public_repo` scope (for public repositories)
 
-**Example:**
+**Setup Options:**
+
+**Option 1 - Using .env file (Recommended):**
+```bash
+# Copy the example file
+cp .env.example .env
+
+# Edit .env and add your token
+# GITHUB_TOKEN=ghp_your_token_here
+
+# Run sync (will automatically read from .env)
+npm run sync-topics
+```
+
+**Option 2 - Using environment variable:**
 ```bash
 export GITHUB_TOKEN=ghp_xxxxxxxxxxxxxxxxx
 npm run sync-topics
+```
+
+**Option 3 - Inline (one-time):**
+```bash
+GITHUB_TOKEN=ghp_xxxxxxxxxxxxxxxxx npm run sync-topics
 ```
 
 ### GitHub Actions
@@ -58,10 +77,26 @@ No manual intervention required once configured.
 2. Click **"Generate new token"** → **"Generate new token (classic)"**
 3. Select the `public_repo` scope
 4. Generate and copy the token
-5. Set as environment variable:
-   ```bash
-   export GITHUB_TOKEN=ghp_your_token_here
-   ```
+
+Then choose one of these methods:
+
+**Method A - Create .env file (Recommended):**
+```bash
+# Copy example file
+cp .env.example .env
+
+# Add your token to .env
+echo "GITHUB_TOKEN=ghp_your_token_here" > .env
+
+# Run sync (reads from .env automatically)
+npm run sync-topics
+```
+
+**Method B - Export environment variable:**
+```bash
+export GITHUB_TOKEN=ghp_your_token_here
+npm run sync-topics
+```
 
 **For GitHub Actions:**
 - Automatically provided by GitHub Actions
@@ -73,54 +108,52 @@ No manual intervention required once configured.
 ### Architecture
 
 ```
-GitHub REST API
+GitHub GraphQL API
     ↓
-Sync Script (scripts/sync-topics.sh)
+Node.js Sync Script (scripts/sync-topics.mjs)
     ↓
 Parse & Transform Data
     ↓
 Generate TypeScript File (src/data/topics.ts)
     ↓
-Git Commit & Push
+Git Commit & Push (GitHub Actions only)
 ```
 
 ### Process Flow
 
 1. **Fetch Discussions**
-   - Makes a GET request to GitHub REST API: `orgs/ngobrolin/discussions`
-   - Retrieves all discussions with pagination support
-   - Includes metadata: author, reactions, comments, labels
+   - Makes a POST request to GitHub GraphQL API
+   - Queries the `ngobrolin` organization's discussions
+   - Retrieves up to 100 discussions with metadata: author, upvotes, comments
 
 2. **Parse Data**
    - Extracts relevant fields from each discussion
-   - Handles pagination to fetch all discussions
-   - Filters out closed or irrelevant discussions (if needed)
+   - Maps GraphQL response to TypeScript `Topic` interface
+   - Sorts by discussion ID (newest first)
 
 3. **Generate TypeScript**
    - Creates a properly formatted TypeScript file
    - Imports the `Topic` type definition
    - Exports a `topics` array with type annotations
-   - Maintains consistent formatting (2-space indentation)
+   - Maintains consistent formatting (2-space indentation, single quotes)
 
-4. **Commit Changes**
+4. **Commit Changes** (GitHub Actions only)
    - Stages the updated `src/data/topics.ts` file
-   - Creates a git commit with a descriptive message
+   - Creates a git commit with message: `chore: sync topics from GitHub Discussions`
    - Pushes changes to the repository
-   - Commit format: `chore: sync topics from GitHub Discussions [date]`
 
 ## Data Mapping
 
 ### API Response Fields to TypeScript Types
 
-| GitHub API Field | TypeScript Field | Type | Description |
-|-----------------|-----------------|------|-------------|
-| `node_id` | `id` | `number` | Unique discussion ID (extracted from node_id) |
+| GraphQL Field | TypeScript Field | Type | Description |
+|---------------|-----------------|------|-------------|
+| `number` | `id` | `number` | Discussion number (unique ID) |
 | `title` | `title` | `string` | Discussion title |
-| `html_url` | `url` | `string` | Full URL to the discussion |
-| `user.login` | `author` | `string` | GitHub username of author |
-| `reactions.total_count` | `votes` | `number` | Total reaction count (thumbs up, etc.) |
-| `comments` | `comments` | `number` | Number of comments |
-| `labels[*].name` | `category` | `string` | First label as category (optional) |
+| `url` | `url` | `string` | Full URL to the discussion |
+| `author.login` | `author` | `string` | GitHub username of author |
+| `upvoteCount` | `votes` | `number` | Number of upvotes/reactions |
+| `comments.totalCount` | `comments` | `number` | Number of comments |
 
 ### TypeScript Output Format
 
@@ -218,14 +251,12 @@ set -x
 
 ### Required Software
 
-- **Bash**: Version 4.0 or higher
-- **curl**: For making HTTP requests to GitHub API
-- **jq**: Version 1.6+ for JSON parsing and manipulation
-- **git**: For committing and pushing changes
+- **Node.js**: Version 18 or higher (for running the sync script)
+- **npm**: Comes with Node.js
 
 ### System Requirements
 
-- **Operating System**: Linux, macOS, or Windows (with WSL or Git Bash)
+- **Operating System**: Linux, macOS, or Windows
 - **Memory**: Minimal (script is lightweight)
 - **Network**: Active internet connection for GitHub API access
 
@@ -239,24 +270,44 @@ name: Sync GitHub Discussions
 on:
   workflow_dispatch:  # Manual trigger
   schedule:
-    - cron: '0 12 * * 2'  # Every Tuesday at 7pm GMT+7
+    - cron: '0 12 * * 2'  # Every Tuesday at 12:00 UTC (7:00 PM GMT+7)
 
 jobs:
   sync:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-      - uses: actions/checkout@v3
-      - name: Sync topics
-        run: ./scripts/sync-topics.sh
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - run: npm ci
+
+      - run: npm run sync-topics
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Check for changes
+        run: git status --porcelain src/data/topics.ts
+
+      - name: Commit and push
+        if: steps.verify-changed.outputs.changed == 'true'
+        run: |
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add src/data/topics.ts
+          git commit -m "chore: sync topics from GitHub Discussions"
+          git push
 ```
 
 ### Permissions
 
 The workflow requires the following GitHub Actions permissions:
-- `contents: write` - To commit changes to the repository
-- `pull-requests: write` - If creating PRs instead of direct commits
+- `contents: write` - To commit and push changes to the repository
 
 ## Best Practices
 

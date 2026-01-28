@@ -10,6 +10,9 @@
 - **Topic Browsing**: Grid view of all topics with sorting capabilities
 - **Statistics Dashboard**: Real-time stats showing total topics, votes, comments, and contributors
 - **GitHub Sync**: Optional sync button to fetch live data from GitHub Discussions
+- **Topic History Tracking**: Remembers picked topics across sessions using localStorage
+- **Smart Skip Logic**: Automatically excludes previously picked topics from random selection
+- **Reset History**: Clear pick history to start fresh
 - **Responsive Design**: Mobile-friendly interface using Tailwind CSS
 
 ## Technology Stack
@@ -71,6 +74,8 @@ ngobrolin-web-topic-picker/
 │   │   └── topics.ts           # Static topics data (main data source)
 │   ├── layouts/
 │   │   └── Layout.astro        # Main layout wrapper
+│   ├── lib/
+│   │   └── topicHistory.ts     # localStorage utility for pick history
 │   ├── pages/
 │   │   ├── api/
 │   │   │   └── topics.ts       # Optional API route for GitHub sync
@@ -92,6 +97,11 @@ ngobrolin-web-topic-picker/
 - **Import**: Used directly in `index.astro` for initial render
 - **Update**: Manually maintained or updated via GitHub sync
 
+#### `/src/lib/topicHistory.ts`
+- **Purpose**: localStorage utility module for pick history
+- **Functions**: getPickedTopicIds(), addPickedTopic(), isTopicPicked(), clearHistory()
+- **Usage**: Imported by index.astro for history management
+
 #### `/src/pages/index.astro`
 - **Purpose**: Main application interface
 - **Contains**: HTML structure, client-side JavaScript, and styling
@@ -101,6 +111,7 @@ ngobrolin-web-topic-picker/
   - Statistics dashboard
   - Sorting controls
   - GitHub sync button
+  - History tracking and reset
 
 #### `/src/pages/api/topics.ts`
 - **Purpose**: Optional API route for live GitHub data
@@ -153,6 +164,29 @@ npm run preview
 # Server runs at http://localhost:4321
 # Serves from dist/ directory
 ```
+
+## Topic History Feature
+
+### How It Works
+
+The topic picker remembers which topics have been selected and automatically excludes them from future random picks. History is stored in the browser's localStorage and persists across sessions.
+
+### Storage
+
+- **Location**: Browser localStorage
+- **Key**: `ngobrolin-topic-picker-history`
+- **Structure**: `{ pickedTopics: number[], lastUpdated: number }`
+
+### Features
+
+1. **Automatic Tracking**: Every time a topic is picked (random or wheel), it's added to history
+2. **Visual Indicators**: Picked topics appear grayed out with a "Picked" badge
+3. **Reset Button**: Appears when there are picked topics, allowing users to clear history
+4. **All Picked Message**: When all topics are picked, a message prompts user to reset
+
+### Reset History
+
+Users can clear all pick history by clicking the "Reset History" button that appears in the sort controls section. A confirmation dialog prevents accidental clearing.
 
 ## Adding Topics
 
@@ -243,6 +277,8 @@ Users can click the "Sync from GitHub" button to fetch live data from GitHub Dis
 - Optimize performance
 - Add tests for functionality
 - Improve type definitions
+- Integrate with localStorage for client-side persistence
+- Use topicHistory module for history management
 
 #### What Agents Should NOT Do
 
@@ -313,6 +349,11 @@ Before submitting changes:
 1. Use existing Tailwind utility classes
 2. Check `index.astro` for color/spacing patterns
 3. Maintain responsive breakpoints (md:, lg:)
+
+**Reset topic pick history:**
+- Click "Reset History" button in sort controls
+- Confirms with dialog before clearing
+- All topics become available for picking again
 
 ## Deployment
 

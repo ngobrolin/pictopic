@@ -7,7 +7,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "sync-topics": "bash scripts/sync-topics.sh"
+    "sync-topics": "node scripts/sync-topics.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",

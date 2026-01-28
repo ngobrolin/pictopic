@@ -3,43 +3,49 @@ name: Sync GitHub Discussions
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 12 * * 2'  # Tuesday 12:00 UTC = Tuesday 7pm GMT+7
-
-permissions:
-  contents: write
+    # Every Tuesday at 12:00 UTC (7:00 PM GMT+7)
+    - cron: '0 12 * * 2'
 
 jobs:
   sync:
+    name: Fetch and sync discussions
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          node-version: '20'
+          cache: 'npm'
 
-      - name: Make sync script executable
-        run: chmod +x scripts/sync-topics.sh
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Run sync script
-        run: ./scripts/sync-topics.sh
+      - name: Sync topics from GitHub
+        run: npm run sync-topics
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Check for changes
-        id: check_changes
+        id: verify-changed
         run: |
-          if git diff --quiet src/data/topics.ts; then
-            echo "changed=false" >> $GITHUB_OUTPUT
-          else
+          if [[ -n $(git status --porcelain src/data/topics.ts) ]]; then
             echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
           fi
 
       - name: Commit and push changes
-        if: steps.check_changes.outputs.changed == 'true'
+        if: steps.verify-changed.outputs.changed == 'true'
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
           git add src/data/topics.ts
-          git commit -m "chore: sync topics from GitHub Discussions [skip ci]"
+          git commit -m "chore: sync topics from GitHub Discussions"
           git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

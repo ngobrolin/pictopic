@@ -1,14 +1,20 @@
 /**
  * Ngobrolin Topic Sync Script
- * 
+ *
  * Fetches discussions from GitHub and updates the topics data file.
- * 
+ *
  * Environment variables:
  *   GITHUB_TOKEN - Required for authentication
- *   GITHUB_REPO - Optional (default: orgs/ngobrolin)
+ *
+ * Usage:
+ *   node scripts/sync-topics.mjs
+ *
+ * The script will read GITHUB_TOKEN from:
+ *   1. Environment variable
+ *   2. .env file in project root (if env var not set)
  */
 
-import { writeFileSync } from 'fs';
+import { writeFileSync, readFileSync, existsSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -18,15 +24,57 @@ const PROJECT_ROOT = resolve(__dirname, '..');
 
 // Configuration
 const GITHUB_ORG = 'ngobrolin';
+const ENV_FILE = resolve(PROJECT_ROOT, '.env');
+
+/**
+ * Load environment variables from .env file
+ * Only loads if GITHUB_TOKEN is not already set
+ */
+function loadEnvFile() {
+  if (process.env.GITHUB_TOKEN) {
+    return; // Already set, don't override
+  }
+
+  if (!existsSync(ENV_FILE)) {
+    return; // No .env file
+  }
+
+  const content = readFileSync(ENV_FILE, 'utf-8');
+  const lines = content.split('\n');
+
+  for (const line of lines) {
+    const trimmed = line.trim();
+    // Skip comments and empty lines
+    if (!trimmed || trimmed.startsWith('#')) {
+      continue;
+    }
+    // Parse KEY=VALUE format
+    const match = trimmed.match(/^GITHUB_TOKEN=(.+)$/);
+    if (match) {
+      process.env.GITHUB_TOKEN = match[1].trim();
+      break;
+    }
+  }
+}
 
 /**
  * Fetch discussions from GitHub using the GraphQL API
  */
 async function fetchDiscussions() {
+  // Load from .env if not already set
+  loadEnvFile();
+
   const token = process.env.GITHUB_TOKEN;
-  
+
   if (!token) {
-    throw new Error('GITHUB_TOKEN environment variable is required');
+    console.error('Error: GITHUB_TOKEN environment variable is not set');
+    console.error('\nPlease set your GitHub Personal Access Token:');
+    console.error('\nOption 1 - Create .env file:');
+    console.error('  1. Copy .env.example to .env');
+    console.error('  2. Add: GITHUB_TOKEN=ghp_your_token_here');
+    console.error('\nOption 2 - Export directly:');
+    console.error('  export GITHUB_TOKEN=ghp_your_token_here');
+    process.exit(1);
   }
 
   const query = `

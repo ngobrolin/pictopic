@@ -7,3 +7,12 @@ export interface Topic {
   comments: number;
   category?: string;
 }
+
+export interface TopicHistory {
+  pickedTopics: number[];
+  lastUpdated: number;
+}
+
+export interface TopicWithStatus extends Topic {
+  isPicked: boolean;
+}
