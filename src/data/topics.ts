@@ -182,7 +182,7 @@ export const topics: Topic[] = [
     title: 'Bedah Library: Gsap vs Motion',
     url: 'https://github.com/orgs/ngobrolin/discussions/72',
     author: 'mazipan',
-    votes: 1,
+    votes: 2,
     comments: 0
   },
   {
