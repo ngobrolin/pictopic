@@ -224,7 +224,7 @@ export const topics: Topic[] = [
     author: 'rizafahmi',
     votes: 1,
     comments: 0,
-    status: 'open'
+    status: 'closed'
   },
   {
     id: 69,
