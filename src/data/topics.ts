@@ -7,7 +7,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/94',
     author: 'rizahoemae',
     votes: 2,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 93,
@@ -15,7 +16,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/93',
     author: 'rizafahmi',
     votes: 1,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 92,
@@ -23,7 +25,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/92',
     author: 'rizafahmi',
     votes: 2,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 91,
@@ -31,7 +34,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/91',
     author: 'zainfathoni',
     votes: 1,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 90,
@@ -39,7 +43,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/90',
     author: 'rizafahmi',
     votes: 2,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 89,
@@ -47,7 +52,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/89',
     author: 'rizafahmi',
     votes: 2,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 88,
@@ -55,7 +61,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/88',
     author: 'lyrihkaesa',
     votes: 3,
-    comments: 4
+    comments: 4,
+    status: 'open'
   },
   {
     id: 87,
@@ -63,7 +70,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/87',
     author: 'rizafahmi',
     votes: 1,
-    comments: 1
+    comments: 1,
+    status: 'open'
   },
   {
     id: 86,
@@ -71,7 +79,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/86',
     author: 'lyrihkaesa',
     votes: 1,
-    comments: 2
+    comments: 2,
+    status: 'closed'
   },
   {
     id: 85,
@@ -79,7 +88,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/85',
     author: 'rizafahmi',
     votes: 1,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 84,
@@ -87,7 +97,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/84',
     author: 'rizafahmi',
     votes: 1,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 83,
@@ -95,7 +106,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/83',
     author: 'rizafahmi',
     votes: 2,
-    comments: 1
+    comments: 1,
+    status: 'open'
   },
   {
     id: 82,
@@ -103,7 +115,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/82',
     author: 'debbysa',
     votes: 2,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 81,
@@ -111,7 +124,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/81',
     author: 'rizafahmi',
     votes: 1,
-    comments: 2
+    comments: 2,
+    status: 'open'
   },
   {
     id: 80,
@@ -119,7 +133,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/80',
     author: 'reyfuu',
     votes: 2,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 79,
@@ -127,7 +142,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/79',
     author: 'rizafahmi',
     votes: 1,
-    comments: 0
+    comments: 0,
+    status: 'closed'
   },
   {
     id: 78,
@@ -135,7 +151,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/78',
     author: 'rizafahmi',
     votes: 1,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 77,
@@ -143,7 +160,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/77',
     author: 'rizafahmi',
     votes: 1,
-    comments: 0
+    comments: 0,
+    status: 'closed'
   },
   {
     id: 76,
@@ -151,7 +169,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/76',
     author: 'mazipan',
     votes: 4,
-    comments: 0
+    comments: 0,
+    status: 'closed'
   },
   {
     id: 75,
@@ -159,7 +178,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/75',
     author: 'mazipan',
     votes: 1,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 74,
@@ -167,7 +187,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/74',
     author: 'mazipan',
     votes: 1,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 73,
@@ -175,7 +196,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/73',
     author: 'mazipan',
     votes: 1,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 72,
@@ -183,7 +205,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/72',
     author: 'mazipan',
     votes: 2,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 71,
@@ -191,7 +214,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/71',
     author: 'mazipan',
     votes: 2,
-    comments: 3
+    comments: 3,
+    status: 'open'
   },
   {
     id: 70,
@@ -199,7 +223,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/70',
     author: 'rizafahmi',
     votes: 1,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 69,
@@ -207,7 +232,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/69',
     author: 'rizafahmi',
     votes: 3,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 68,
@@ -215,7 +241,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/68',
     author: 'rizafahmi',
     votes: 1,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 67,
@@ -223,7 +250,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/67',
     author: 'rizafahmi',
     votes: 1,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 66,
@@ -231,7 +259,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/66',
     author: 'lyrihkaesa',
     votes: 2,
-    comments: 1
+    comments: 1,
+    status: 'closed'
   },
   {
     id: 65,
@@ -239,7 +268,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/65',
     author: 'rizafahmi',
     votes: 2,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 64,
@@ -247,7 +277,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/64',
     author: 'rizafahmi',
     votes: 1,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 63,
@@ -255,7 +286,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/63',
     author: 'rizafahmi',
     votes: 1,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 62,
@@ -263,7 +295,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/62',
     author: 'rizafahmi',
     votes: 2,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 61,
@@ -271,7 +304,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/61',
     author: 'rizafahmi',
     votes: 1,
-    comments: 1
+    comments: 1,
+    status: 'closed'
   },
   {
     id: 60,
@@ -279,7 +313,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/60',
     author: 'rizafahmi',
     votes: 3,
-    comments: 2
+    comments: 2,
+    status: 'open'
   },
   {
     id: 59,
@@ -287,7 +322,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/59',
     author: 'rizafahmi',
     votes: 1,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 58,
@@ -295,7 +331,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/58',
     author: 'rizafahmi',
     votes: 3,
-    comments: 1
+    comments: 1,
+    status: 'open'
   },
   {
     id: 57,
@@ -303,7 +340,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/57',
     author: 'rizafahmi',
     votes: 2,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 56,
@@ -311,7 +349,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/56',
     author: 'rizafahmi',
     votes: 1,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 55,
@@ -319,7 +358,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/55',
     author: 'rizafahmi',
     votes: 2,
-    comments: 1
+    comments: 1,
+    status: 'closed'
   },
   {
     id: 54,
@@ -327,7 +367,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/54',
     author: 'rizafahmi',
     votes: 1,
-    comments: 1
+    comments: 1,
+    status: 'closed'
   },
   {
     id: 53,
@@ -335,7 +376,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/53',
     author: 'rizafahmi',
     votes: 2,
-    comments: 1
+    comments: 1,
+    status: 'open'
   },
   {
     id: 52,
@@ -343,7 +385,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/52',
     author: 'DSaleha',
     votes: 2,
-    comments: 1
+    comments: 1,
+    status: 'open'
   },
   {
     id: 51,
@@ -351,7 +394,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/51',
     author: 'rizafahmi',
     votes: 3,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 50,
@@ -359,7 +403,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/50',
     author: 'rizafahmi',
     votes: 3,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 49,
@@ -367,7 +412,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/49',
     author: 'rizafahmi',
     votes: 4,
-    comments: 1
+    comments: 1,
+    status: 'open'
   },
   {
     id: 48,
@@ -375,7 +421,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/48',
     author: 'rizafahmi',
     votes: 2,
-    comments: 4
+    comments: 4,
+    status: 'open'
   },
   {
     id: 47,
@@ -383,7 +430,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/47',
     author: 'rizafahmi',
     votes: 3,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 46,
@@ -391,7 +439,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/46',
     author: 'rizafahmi',
     votes: 5,
-    comments: 0
+    comments: 0,
+    status: 'closed'
   },
   {
     id: 45,
@@ -399,7 +448,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/45',
     author: 'rizafahmi',
     votes: 1,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 44,
@@ -407,7 +457,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/44',
     author: 'rizafahmi',
     votes: 1,
-    comments: 0
+    comments: 0,
+    status: 'closed'
   },
   {
     id: 43,
@@ -415,7 +466,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/43',
     author: 'rizafahmi',
     votes: 3,
-    comments: 0
+    comments: 0,
+    status: 'closed'
   },
   {
     id: 42,
@@ -423,7 +475,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/42',
     author: 'rizafahmi',
     votes: 1,
-    comments: 0
+    comments: 0,
+    status: 'closed'
   },
   {
     id: 41,
@@ -431,7 +484,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/41',
     author: 'mazipan',
     votes: 11,
-    comments: 2
+    comments: 2,
+    status: 'open'
   },
   {
     id: 40,
@@ -439,7 +493,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/40',
     author: 'rizafahmi',
     votes: 1,
-    comments: 5
+    comments: 5,
+    status: 'closed'
   },
   {
     id: 39,
@@ -447,7 +502,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/39',
     author: 'rizafahmi',
     votes: 2,
-    comments: 1
+    comments: 1,
+    status: 'open'
   },
   {
     id: 38,
@@ -455,7 +511,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/38',
     author: 'swiftalker',
     votes: 2,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 37,
@@ -463,7 +520,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/37',
     author: 'bahyusanciko',
     votes: 5,
-    comments: 2
+    comments: 2,
+    status: 'open'
   },
   {
     id: 36,
@@ -471,7 +529,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/36',
     author: 'ekafyi',
     votes: 2,
-    comments: 0
+    comments: 0,
+    status: 'closed'
   },
   {
     id: 35,
@@ -479,7 +538,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/35',
     author: 'rizafahmi',
     votes: 4,
-    comments: 1
+    comments: 1,
+    status: 'open'
   },
   {
     id: 34,
@@ -487,7 +547,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/34',
     author: 'rizafahmi',
     votes: 4,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 33,
@@ -495,7 +556,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/33',
     author: 'rizafahmi',
     votes: 3,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 32,
@@ -503,7 +565,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/32',
     author: 'rizafahmi',
     votes: 3,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 31,
@@ -511,7 +574,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/31',
     author: 'rizafahmi',
     votes: 3,
-    comments: 1
+    comments: 1,
+    status: 'closed'
   },
   {
     id: 30,
@@ -519,7 +583,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/30',
     author: 'diosamuel',
     votes: 4,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 29,
@@ -527,7 +592,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/29',
     author: 'baralogi',
     votes: 2,
-    comments: 1
+    comments: 1,
+    status: 'closed'
   },
   {
     id: 28,
@@ -535,7 +601,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/28',
     author: 'driannaird',
     votes: 2,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 27,
@@ -543,7 +610,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/27',
     author: 'rizafahmi',
     votes: 4,
-    comments: 0
+    comments: 0,
+    status: 'closed'
   },
   {
     id: 26,
@@ -551,7 +619,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/26',
     author: 'triadmoko',
     votes: 8,
-    comments: 1
+    comments: 1,
+    status: 'closed'
   },
   {
     id: 25,
@@ -559,7 +628,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/25',
     author: 'rizafahmi',
     votes: 1,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 24,
@@ -567,7 +637,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/24',
     author: 'rizafahmi',
     votes: 3,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 23,
@@ -575,7 +646,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/23',
     author: 'rizafahmi',
     votes: 1,
-    comments: 0
+    comments: 0,
+    status: 'closed'
   },
   {
     id: 22,
@@ -583,7 +655,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/22',
     author: 'krowter',
     votes: 2,
-    comments: 1
+    comments: 1,
+    status: 'closed'
   },
   {
     id: 21,
@@ -591,7 +664,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/21',
     author: 'azman-aziz',
     votes: 6,
-    comments: 2
+    comments: 2,
+    status: 'closed'
   },
   {
     id: 20,
@@ -599,7 +673,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/20',
     author: 'GalangFirstdev',
     votes: 1,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 19,
@@ -607,7 +682,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/19',
     author: 'rizafahmi',
     votes: 7,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 18,
@@ -615,7 +691,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/18',
     author: 'nzrtech',
     votes: 4,
-    comments: 1
+    comments: 1,
+    status: 'open'
   },
   {
     id: 17,
@@ -623,7 +700,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/17',
     author: 'rizafahmi',
     votes: 2,
-    comments: 2
+    comments: 2,
+    status: 'closed'
   },
   {
     id: 16,
@@ -631,7 +709,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/16',
     author: 'rizafahmi',
     votes: 3,
-    comments: 0
+    comments: 0,
+    status: 'closed'
   },
   {
     id: 15,
@@ -639,7 +718,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/15',
     author: 'rizafahmi',
     votes: 1,
-    comments: 0
+    comments: 0,
+    status: 'closed'
   },
   {
     id: 14,
@@ -647,7 +727,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/14',
     author: 'Teknofilia',
     votes: 2,
-    comments: 2
+    comments: 2,
+    status: 'open'
   },
   {
     id: 13,
@@ -655,7 +736,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/13',
     author: 'rizafahmi',
     votes: 6,
-    comments: 1
+    comments: 1,
+    status: 'closed'
   },
   {
     id: 12,
@@ -663,7 +745,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/12',
     author: 'ekafyi',
     votes: 3,
-    comments: 0
+    comments: 0,
+    status: 'closed'
   },
   {
     id: 11,
@@ -671,7 +754,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/11',
     author: 'rizafahmi',
     votes: 9,
-    comments: 1
+    comments: 1,
+    status: 'closed'
   },
   {
     id: 10,
@@ -679,7 +763,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/10',
     author: 'rizafahmi',
     votes: 3,
-    comments: 0
+    comments: 0,
+    status: 'closed'
   },
   {
     id: 9,
@@ -687,7 +772,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/9',
     author: 'rizafahmi',
     votes: 2,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 8,
@@ -695,7 +781,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/8',
     author: 'rizafahmi',
     votes: 1,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 7,
@@ -703,7 +790,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/7',
     author: 'rizafahmi',
     votes: 10,
-    comments: 1
+    comments: 1,
+    status: 'closed'
   },
   {
     id: 6,
@@ -711,7 +799,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/6',
     author: 'rizafahmi',
     votes: 1,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 5,
@@ -719,7 +808,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/5',
     author: 'rizafahmi',
     votes: 2,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 4,
@@ -727,7 +817,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/4',
     author: 'rizafahmi',
     votes: 2,
-    comments: 1
+    comments: 1,
+    status: 'open'
   },
   {
     id: 3,
@@ -735,7 +826,8 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/3',
     author: 'rizafahmi',
     votes: 5,
-    comments: 1
+    comments: 1,
+    status: 'closed'
   },
   {
     id: 2,
@@ -743,6 +835,7 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/2',
     author: 'ivankristianto',
     votes: 2,
-    comments: 0
+    comments: 0,
+    status: 'closed'
   }
 ];
