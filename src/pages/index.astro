@@ -247,7 +247,7 @@ import Layout from "../layouts/Layout.astro";
     id="wheel-modal"
     class="fixed inset-0 bg-bg/90 hidden items-center justify-center z-40"
   >
-    <div class="bg-bg border-2 border-border p-8 md:p-12 max-w-lg w-full mx-4">
+    <div class="bg-bg border-2 border-border p-8 md:p-12 max-w-3xl w-full mx-4">
       <div class="flex justify-between items-center mb-8">
         <h3 class="text-2xl md:text-3xl font-bold uppercase tracking-tighter">
           Spin the Wheel
@@ -274,9 +274,9 @@ import Layout from "../layouts/Layout.astro";
       <div class="relative">
         <canvas
           id="wheel-canvas"
-          width="400"
-          height="400"
-          class="mx-auto w-full max-w-[400px]"></canvas>
+          width="600"
+          height="600"
+          class="mx-auto w-full max-w-[600px]"></canvas>
         <div
           class="absolute top-1/2 right-0 transform translate-x-2 -translate-y-1/2"
         >
@@ -586,10 +586,10 @@ import Layout from "../layouts/Layout.astro";
         ctx.textAlign = "right";
         ctx.fillStyle =
           index % 2 === 0 ? "#000000" : "#FAFAFA";
-        ctx.font = "bold 10px 'Space Grotesk', sans-serif";
+        ctx.font = "bold 14px 'Space Grotesk', sans-serif";
         const text =
-          topic.title.length > 20
-            ? topic.title.substring(0, 17) + "..."
+          topic.title.length > 30
+            ? topic.title.substring(0, 27) + "..."
             : topic.title;
         ctx.fillText(text.toUpperCase(), radius - 10, 4);
         ctx.restore();
