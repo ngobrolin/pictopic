@@ -2,6 +2,14 @@ import type { Topic } from '../types/topic';
 
 export const topics: Topic[] = [
   {
+    id: 95,
+    title: 'Bedah framework: LynxJS',
+    url: 'https://github.com/orgs/ngobrolin/discussions/95',
+    author: 'rizafahmi',
+    votes: 1,
+    comments: 0
+  },
+  {
     id: 94,
     title: 'Web Security: Keterlibatan Frontend dalam menjaga keamanan website',
     url: 'https://github.com/orgs/ngobrolin/discussions/94',
