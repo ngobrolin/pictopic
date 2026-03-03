@@ -1,0 +1,77 @@
+{
+  "project": "Ngobrolin Web",
+  "theme": {
+    "colors": {
+      "background": {
+        "main": "#0f172a",
+        "surface": "rgba(30, 41, 59, 0.4)",
+        "nav": "rgba(15, 23, 42, 0.8)"
+      },
+      "brand": {
+        "primary": "#ec4899",
+        "secondary": "#8b5cf6",
+        "accent": "#22d3ee"
+      },
+      "status": {
+        "fresh": "#34d399",
+        "hot": "#fb923c",
+        "season": "#eab308"
+      },
+      "text": {
+        "heading": "#ffffff",
+        "body": "#e2e8f0",
+        "muted": "#94a3b8"
+      }
+    },
+    "typography": {
+      "fontFamily": "'Outfit', sans-serif",
+      "weights": {
+        "bold": "700",
+        "semibold": "600",
+        "medium": "500"
+      }
+    },
+    "effects": {
+      "blur": {
+        "standard": "80px",
+        "backdrop": "20px"
+      },
+      "gradients": {
+        "brand": "linear-gradient(to top right, #ec4899, #8b5cf6)",
+        "hero_text": "linear-gradient(to right, #f472b6, #a78bfa, #22d3ee)",
+        "background_glows": [
+          "radial-gradient(circle at 0% 0%, rgba(244, 114, 182, 0.15), transparent 40%)",
+          "radial-gradient(circle at 100% 0%, rgba(167, 139, 250, 0.15), transparent 40%)",
+          "radial-gradient(circle at 50% 100%, rgba(56, 189, 248, 0.15), transparent 40%)"
+        ]
+      }
+    },
+    "components": {
+      "cards": {
+        "borderRadius": "32px",
+        "border": "1px solid rgba(255, 255, 255, 0.05)",
+        "hover": {
+          "transform": "translateY(-8px)",
+          "shadow": "xl"
+        }
+      },
+      "buttons": {
+        "primary": {
+          "bg": "#ffffff",
+          "text": "#0f172a",
+          "borderRadius": "9999px"
+        },
+        "ghost": {
+          "bg": "rgba(255, 255, 255, 0.05)",
+          "border": "1px solid rgba(255, 255, 255, 0.1)",
+          "text": "#ffffff"
+        }
+      },
+      "navigation": {
+        "style": "floating",
+        "borderRadius": "9999px",
+        "backdropBlur": "xl"
+      }
+    }
+  }
+}

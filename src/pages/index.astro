@@ -2,210 +2,192 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Ngobrolin Web - Topic Picker">
-  <main class="container mx-auto px-4 py-12 max-w-6xl">
-    <!-- Header -->
-    <header class="text-center mb-12">
-      <h1
-        class="text-5xl font-bold mb-4 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent"
-      >
-        Ngobrolin Web
+<Layout title="Ngobrolin Web - Podcast Topic Picker">
+  <!-- Floating Navbar -->
+  <div class="fixed top-4 left-0 right-0 z-50 flex justify-center px-4">
+    <nav class="flex w-full max-w-4xl items-center justify-between rounded-full border border-white/10 bg-slate-900/80 px-6 py-3 shadow-lg backdrop-blur-xl">
+      <div class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-tr from-pink-500 to-violet-500 shadow-md">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
+          </svg>
+        </div>
+        <span class="text-lg font-bold tracking-tight text-white">Ngobrolin Web</span>
+      </div>
+      <div class="hidden items-center gap-1 sm:flex">
+        <a href="https://github.com/orgs/ngobrolin/discussions" target="_blank" rel="noopener noreferrer" class="rounded-full px-4 py-2 text-sm font-medium text-slate-300 transition-all hover:bg-white/10 hover:text-white">Discussions</a>
+        <a href="https://www.youtube.com/@aspect1001" target="_blank" rel="noopener noreferrer" class="rounded-full px-4 py-2 text-sm font-medium text-slate-300 transition-all hover:bg-white/10 hover:text-white">Episodes</a>
+      </div>
+    </nav>
+  </div>
+
+  <main class="mx-auto max-w-7xl px-6 pb-24 pt-32">
+    <!-- Header Section -->
+    <header class="mb-16 text-center">
+
+      <h1 class="mb-6 text-5xl font-bold tracking-tight text-white md:text-7xl">
+        Pick the <span class="hero-gradient">next topic</span>
       </h1>
-      <p class="text-xl text-slate-400">
-        Pick the next topic for our podcast discussion
+      <p class="mx-auto max-w-2xl text-xl text-slate-400 font-medium">
+        Help us decide what to ramble about next! Vote for the nerdy stuff or let chaos decide.
       </p>
     </header>
 
-    <!-- Picker Section -->
-    <section class="mb-12">
-      <div
-        class="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10"
-      >
-        <div class="text-center mb-6">
-          <h2 class="text-2xl font-semibold mb-2">Random Topic Picker</h2>
-          <p class="text-slate-400">
-            Click the button to randomly select the next discussion topic
-          </p>
-        </div>
+    <!-- Random Picker Area (Hero) -->
+    <section class="relative mx-auto mb-24 max-w-4xl overflow-hidden rounded-[32px] border border-white/5 bg-[rgba(30,41,59,0.4)] p-1 shadow-2xl backdrop-blur-sm">
+      <div class="absolute -top-32 left-1/2 h-64 w-96 -translate-x-1/2 rounded-full bg-pink-500/20 blur-[100px]"></div>
+      
+      <div id="selected-topic" class="relative flex flex-col items-center justify-center rounded-[28px] border border-white/5 bg-slate-900/50 px-8 py-16 text-center">
+        <h2 class="mb-8 mt-2 text-3xl md:text-4xl font-semibold text-slate-500">
+          🎲 No topic selected yet...
+        </h2>
 
-        <!-- Selected Topic Display -->
-        <div
-          id="selected-topic"
-          class="mb-6 min-h-32 flex items-center justify-center"
-        >
-          <p class="text-slate-500 italic">No topic selected yet</p>
-        </div>
-
-        <!-- Picker Button -->
-        <div class="flex justify-center gap-4">
+        <div class="flex flex-col gap-4 sm:flex-row">
           <button
             id="pick-btn"
             disabled
-            class="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+            class="group relative inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-base font-bold text-slate-900 transition-all hover:-translate-y-1 hover:shadow-[0_10px_30px_-10px_rgba(255,255,255,0.4)] active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none"
           >
+            <svg class="w-5 h-5 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+            </svg>
             Pick Random Topic
           </button>
           <button
             id="spin-btn"
             disabled
-            class="px-8 py-4 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-amber-500/25 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+            class="group inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-8 py-4 text-base font-semibold text-white transition-all hover:bg-white/10 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
           >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+            </svg>
             Spin the Wheel
           </button>
         </div>
       </div>
     </section>
 
-    <!-- Stats -->
-    <section class="mb-8">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div
-          class="bg-white/5 rounded-xl p-4 text-center border border-white/10"
-        >
-          <div id="stat-topics" class="text-3xl font-bold text-purple-400">
-            --
-          </div>
-          <div class="text-sm text-slate-400">Total Topics</div>
-        </div>
-        <div
-          class="bg-white/5 rounded-xl p-4 text-center border border-white/10"
-        >
-          <div id="stat-votes" class="text-3xl font-bold text-pink-400">--</div>
-          <div class="text-sm text-slate-400">Total Votes</div>
-        </div>
-        <div
-          class="bg-white/5 rounded-xl p-4 text-center border border-white/10"
-        >
-          <div id="stat-comments" class="text-3xl font-bold text-amber-400">
-            --
-          </div>
-          <div class="text-sm text-slate-400">Total Comments</div>
-        </div>
-        <div
-          class="bg-white/5 rounded-xl p-4 text-center border border-white/10"
-        >
-          <div
-            id="stat-contributors"
-            class="text-3xl font-bold text-emerald-400"
-          >
-            --
-          </div>
-          <div class="text-sm text-slate-400">Contributors</div>
-        </div>
+    <!-- Stats Grid -->
+    <section class="mb-16 grid grid-cols-2 gap-4 md:grid-cols-4">
+      <div class="flex flex-col items-center justify-center rounded-[32px] border border-white/5 bg-[rgba(30,41,59,0.4)] p-6 text-center transition-transform hover:scale-105 hover:-translate-y-2">
+        <div id="stat-topics" class="text-4xl font-bold text-[#ec4899]">--</div>
+        <div class="mt-1 text-sm font-semibold text-[#94a3b8]">Total Topics</div>
+      </div>
+      <div class="flex flex-col items-center justify-center rounded-[32px] border border-white/5 bg-[rgba(30,41,59,0.4)] p-6 text-center transition-transform hover:scale-105 hover:-translate-y-2">
+        <div id="stat-votes" class="text-4xl font-bold text-[#8b5cf6]">--</div>
+        <div class="mt-1 text-sm font-semibold text-[#94a3b8]">Total Votes</div>
+      </div>
+      <div class="flex flex-col items-center justify-center rounded-[32px] border border-white/5 bg-[rgba(30,41,59,0.4)] p-6 text-center transition-transform hover:scale-105 hover:-translate-y-2">
+        <div id="stat-comments" class="text-4xl font-bold text-[#fb923c]">--</div>
+        <div class="mt-1 text-sm font-semibold text-[#94a3b8]">Comments</div>
+      </div>
+      <div class="flex flex-col items-center justify-center rounded-[32px] border border-white/5 bg-[rgba(30,41,59,0.4)] p-6 text-center transition-transform hover:scale-105 hover:-translate-y-2">
+        <div id="stat-contributors" class="text-4xl font-bold text-[#22d3ee]">--</div>
+        <div class="mt-1 text-sm font-semibold text-[#94a3b8]">Contributors</div>
       </div>
     </section>
 
-    <!-- Sort Controls -->
-    <section class="mb-6">
-      <div class="flex flex-wrap gap-2 items-center">
-        <span class="text-slate-400 mr-2">Sort by:</span>
-        <button
-          data-sort="votes"
-          class="sort-btn px-4 py-2 rounded-lg bg-purple-600/30 border border-purple-500/50 text-sm hover:bg-purple-600/50 transition-colors"
-        >
-          Most Votes
-        </button>
-        <button
-          data-sort="comments"
-          class="sort-btn px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-sm hover:bg-white/10 transition-colors"
-        >
-          Most Comments
-        </button>
-        <button
-          data-sort="newest"
-          class="sort-btn px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-sm hover:bg-white/10 transition-colors"
-        >
-          Newest
-        </button>
-        <button
-          data-sort="oldest"
-          class="sort-btn px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-sm hover:bg-white/10 transition-colors"
-        >
-          Oldest
-        </button>
+    <!-- Filter Bar -->
+    <div class="mb-10 flex flex-col justify-between gap-6 pb-2 md:flex-row md:items-center">
+      <div>
+        <h3 class="flex items-center gap-2 text-2xl font-bold text-white">
+          <span class="text-orange-400">🔥</span>
+          Hot Topics
+          <span id="topics-count" class="text-base font-medium text-slate-500"></span>
+        </h3>
+      </div>
+      
+      <div class="flex flex-wrap items-center gap-2">
+        <div class="flex flex-wrap gap-2 rounded-2xl bg-slate-800/50 p-1.5">
+          <button data-sort="votes" class="sort-btn active rounded-xl px-4 py-2 text-sm font-bold transition-all">
+            Most Votes
+          </button>
+          <button data-sort="comments" class="sort-btn rounded-xl px-4 py-2 text-sm font-semibold text-slate-400 transition-colors hover:bg-white/5 hover:text-white">
+            Talked About
+          </button>
+          <button data-sort="newest" class="sort-btn rounded-xl px-4 py-2 text-sm font-semibold text-slate-400 transition-colors hover:bg-white/5 hover:text-white">
+            Fresh
+          </button>
+          <button data-sort="oldest" class="sort-btn rounded-xl px-4 py-2 text-sm font-semibold text-slate-400 transition-colors hover:bg-white/5 hover:text-white">
+            Dusty
+          </button>
+        </div>
         <button
           id="reset-history-btn"
-          class="ml-4 px-4 py-2 rounded-lg bg-red-600/20 border border-red-500/50 text-sm text-red-400 hover:bg-red-600/30 transition-colors hidden"
+          class="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-2 text-sm font-semibold text-red-400 transition-all hover:bg-red-500/20 hidden"
         >
-          Reset History
+          🗑️ Reset
         </button>
       </div>
-    </section>
+    </div>
 
-    <!-- Topics Grid -->
-    <section>
-      <h2 class="text-2xl font-semibold mb-6">All Topics</h2>
-      <div id="topics-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <!-- Topics will be rendered by JavaScript -->
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="mt-16 text-center text-slate-500 text-sm">
-      <p>
-        Topics sourced from
-        <a
-          href="https://github.com/orgs/ngobrolin/discussions"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-purple-400 hover:text-purple-300 transition-colors"
-        >
-          GitHub Discussions
-        </a>
-      </p>
-    </footer>
+    <!-- Topic Grid -->
+    <div id="topics-grid" class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <!-- Topics will be rendered by JavaScript -->
+    </div>
   </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/5 bg-slate-900/80 py-16 backdrop-blur-lg">
+    <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-8 px-6 md:flex-row">
+      <div class="flex flex-col gap-2">
+        <div class="flex items-center gap-2 text-slate-400">
+          <span>©</span>
+          <span class="text-sm font-medium">2024 Ngobrolin Web</span>
+        </div>
+        <p class="text-xs text-slate-600">Built for fun and profit (mostly fun).</p>
+      </div>
+      
+      <div class="flex gap-4">
+        <a href="https://github.com/orgs/ngobrolin/discussions" target="_blank" rel="noopener noreferrer" class="rounded-full bg-white/5 p-3 text-slate-400 hover:bg-white/10 hover:text-white hover:scale-110 transition-all">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="https://www.youtube.com/@aspect1001" target="_blank" rel="noopener noreferrer" class="rounded-full bg-white/5 p-3 text-slate-400 hover:bg-white/10 hover:text-white hover:scale-110 transition-all">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
 
   <!-- Wheel Modal -->
   <div
     id="wheel-modal"
-    class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden items-center justify-center z-50"
+    class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center z-50"
   >
-    <div
-      class="bg-slate-900 rounded-2xl p-8 max-w-lg w-full mx-4 border border-white/10"
-    >
-      <div class="flex justify-between items-center mb-6">
-        <h3 class="text-xl font-semibold">Spin the Wheel</h3>
-        <button
-          id="close-modal"
-          class="text-slate-400 hover:text-white transition-colors"
-        >
-          <svg
-            class="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+    <div class="relative mx-4 max-w-lg w-full overflow-hidden rounded-[32px] border border-white/5 bg-[rgba(30,41,59,0.4)] p-1 shadow-2xl backdrop-blur-xl">
+      <div class="rounded-[28px] border border-white/5 bg-slate-900/80 p-8">
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="text-2xl font-bold text-white">Spin the Wheel</h3>
+          <button
+            id="close-modal"
+            class="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-slate-400 transition-all hover:bg-white/10 hover:text-white hover:scale-110"
           >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M6 18L18 6M6 6l12 12"></path>
-          </svg>
-        </button>
-      </div>
-      <div class="relative">
-        <canvas id="wheel-canvas" width="400" height="400" class="mx-auto"
-        ></canvas>
-        <div
-          class="absolute top-1/2 right-0 transform translate-x-2 -translate-y-1/2"
-        >
-          <div
-            class="w-0 h-0 border-t-8 border-b-8 border-r-12 border-t-transparent border-b-transparent border-r-white"
-          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+        <div class="relative">
+          <canvas id="wheel-canvas" width="400" height="400" class="mx-auto"></canvas>
+          <div class="absolute top-1/2 right-0 transform translate-x-2 -translate-y-1/2">
+            <div class="w-0 h-0 border-t-8 border-b-8 border-r-12 border-t-transparent border-b-transparent border-r-white"></div>
           </div>
         </div>
-      </div>
-      <div class="text-center mt-6">
-        <button
-          id="spin-wheel-btn"
-          class="px-8 py-3 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 rounded-xl font-semibold transition-all duration-300 hover:scale-105"
-        >
-          Spin!
-        </button>
-      </div>
-      <div id="wheel-result" class="mt-4 text-center hidden">
-        <p class="text-lg font-semibold text-amber-400"></p>
+        <div class="text-center mt-8">
+          <button
+            id="spin-wheel-btn"
+            class="group inline-flex items-center justify-center gap-2 rounded-full bg-white px-10 py-4 text-base font-bold text-slate-900 transition-all hover:-translate-y-1 hover:shadow-[0_10px_30px_-10px_rgba(255,255,255,0.4)] active:scale-95"
+          >
+            🎡 Spin!
+          </button>
+        </div>
+        <div id="wheel-result" class="mt-6 text-center hidden">
+          <p class="text-xl font-bold hero-gradient"></p>
+        </div>
       </div>
     </div>
   </div>
@@ -216,167 +198,251 @@ import Layout from "../layouts/Layout.astro";
   import type { Topic } from "../types/topic";
   import * as topicHistory from "../lib/topicHistory";
 
-  function init() {
-    let topics = [];
-    let currentSort = "votes";
-    let selectedTopicId = null;
+  const cardColors = [
+    { hover: "hover:border-pink-500/50", shadow: "hover:shadow-pink-500/10", text: "group-hover:text-pink-300", btn: "group-hover:bg-pink-400" },
+    { hover: "hover:border-cyan-400/50", shadow: "hover:shadow-cyan-400/10", text: "group-hover:text-cyan-300", btn: "group-hover:bg-cyan-400" },
+    { hover: "hover:border-emerald-400/50", shadow: "hover:shadow-emerald-400/10", text: "group-hover:text-emerald-300", btn: "group-hover:bg-emerald-400" },
+    { hover: "hover:border-purple-400/50", shadow: "hover:shadow-purple-400/10", text: "group-hover:text-purple-300", btn: "group-hover:bg-purple-400" },
+    { hover: "hover:border-red-400/50", shadow: "hover:shadow-red-400/10", text: "group-hover:text-red-300", btn: "group-hover:bg-red-400" },
+    { hover: "hover:border-indigo-400/50", shadow: "hover:shadow-indigo-400/10", text: "group-hover:text-indigo-300", btn: "group-hover:bg-indigo-400" },
+    { hover: "hover:border-blue-400/50", shadow: "hover:shadow-blue-400/10", text: "group-hover:text-blue-300", btn: "group-hover:bg-blue-400" },
+    { hover: "hover:border-yellow-400/50", shadow: "hover:shadow-yellow-400/10", text: "group-hover:text-yellow-300", btn: "group-hover:bg-yellow-400" },
+    { hover: "hover:border-orange-400/50", shadow: "hover:shadow-orange-400/10", text: "group-hover:text-orange-300", btn: "group-hover:bg-orange-400" },
+  ];
 
-    const pickBtn = document.getElementById("pick-btn");
-    const spinBtn = document.getElementById("spin-btn");
-    const selectedTopicDiv = document.getElementById("selected-topic");
-    const topicsGrid = document.getElementById("topics-grid");
+  const avatarColors = [
+    "bg-blue-400", "bg-orange-400", "bg-green-400", "bg-pink-400", 
+    "bg-purple-400", "bg-indigo-400", "bg-cyan-400", "bg-yellow-400"
+  ];
+
+  function init() {
+    let topics: Topic[] = [];
+    let currentSort = "votes";
+    let selectedTopicId: number | null = null;
+
+    const pickBtn = document.getElementById("pick-btn") as HTMLButtonElement;
+    const spinBtn = document.getElementById("spin-btn") as HTMLButtonElement;
+    const selectedTopicDiv = document.getElementById("selected-topic")!;
+    const topicsGrid = document.getElementById("topics-grid")!;
+    const topicsCount = document.getElementById("topics-count")!;
     const sortBtns = document.querySelectorAll(".sort-btn");
-    const resetHistoryBtn = document.getElementById("reset-history-btn");
-    const wheelModal = document.getElementById("wheel-modal");
-    const closeModalBtn = document.getElementById("close-modal");
-    const spinWheelBtn = document.getElementById("spin-wheel-btn");
-    const wheelCanvas = document.getElementById("wheel-canvas");
-    const wheelResult = document.getElementById("wheel-result");
-    const statTopics = document.getElementById("stat-topics");
-    const statVotes = document.getElementById("stat-votes");
-    const statComments = document.getElementById("stat-comments");
-    const statContributors = document.getElementById("stat-contributors");
+    const resetHistoryBtn = document.getElementById("reset-history-btn")!;
+    const wheelModal = document.getElementById("wheel-modal")!;
+    const closeModalBtn = document.getElementById("close-modal")!;
+    const spinWheelBtn = document.getElementById("spin-wheel-btn")!;
+    const wheelCanvas = document.getElementById("wheel-canvas") as HTMLCanvasElement;
+    const wheelResult = document.getElementById("wheel-result")!;
+    const statTopics = document.getElementById("stat-topics")!;
+    const statVotes = document.getElementById("stat-votes")!;
+    const statComments = document.getElementById("stat-comments")!;
+    const statContributors = document.getElementById("stat-contributors")!;
+
+    function getAvatarColor(author: string): string {
+      let hash = 0;
+      for (let i = 0; i < author.length; i++) {
+        hash = author.charCodeAt(i) + ((hash << 5) - hash);
+      }
+      return avatarColors[Math.abs(hash) % avatarColors.length];
+    }
 
     function updateStats() {
       statTopics.textContent = topics.length.toString();
-      statVotes.textContent = topics
-        .reduce((sum, t) => sum + t.votes, 0)
-        .toString();
-      statComments.textContent = topics
-        .reduce((sum, t) => sum + t.comments, 0)
-        .toString();
-      statContributors.textContent = new Set(
-        topics.map((t) => t.author)
-      ).size.toString();
+      statVotes.textContent = topics.reduce((sum, t) => sum + t.votes, 0).toString();
+      statComments.textContent = topics.reduce((sum, t) => sum + t.comments, 0).toString();
+      statContributors.textContent = new Set(topics.map((t) => t.author)).size.toString();
     }
 
-    function renderTopicCard(topic, isPicked = false) {
-      const isSelected = selectedTopicId === topic.id;
-      const pickedBadge = isPicked
-        ? '<span class="absolute -top-1 -right-1 px-2 py-1 bg-slate-600 text-white text-xs font-medium rounded-md">Picked</span>'
-        : "";
-      const baseClasses =
-        "topic-card p-4 rounded-xl border transition-all duration-300 cursor-pointer";
-      let stateClasses = "";
-
-      if (isPicked) {
-        stateClasses = "opacity-50 bg-slate-700/20 border-slate-500/30";
-      } else if (isSelected) {
-        stateClasses =
-          "bg-purple-600/40 border-purple-400 shadow-lg shadow-purple-500/20 scale-105";
-      } else {
-        stateClasses =
-          "bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20";
-      }
-
-      return (
-        '<div class="' +
-        baseClasses +
-        " " +
-        stateClasses +
-        '" data-topic-id="' +
-        topic.id +
-        '">' +
-        '<div class="relative">' +
-        '<h3 class="font-semibold text-lg mb-2 text-white">' +
-        topic.title +
-        "</h3>" +
-        pickedBadge +
-        "</div>" +
-        '<div class="flex items-center gap-4 text-sm text-slate-400">' +
-        '<span class="flex items-center gap-1">' +
-        '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">' +
-        '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />' +
-        "</svg>" +
-        topic.author +
-        "</span>" +
-        '<span class="flex items-center gap-1">' +
-        '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">' +
-        '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />' +
-        "</svg>" +
-        topic.votes +
-        "</span>" +
-        '<span class="flex items-center gap-1">' +
-        '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">' +
-        '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />' +
-        "</svg>" +
-        topic.comments +
-        "</span>" +
-        "</div>" +
-        '<a href="' +
-        topic.url +
-        '" target="_blank" rel="noopener noreferrer" class="inline-block mt-3 text-sm text-purple-400 hover:text-purple-300 transition-colors" onclick="event.stopPropagation()">View Discussion →</a>' +
-        "</div>"
-      );
+    function getUnpickedTopics(): Topic[] {
+      const pickedIds = topicHistory.getPickedTopicIds();
+      return topics.filter((t) => !pickedIds.includes(t.id));
     }
 
-    function sortTopics(sortBy) {
-      const sortedTopics = [...topics].sort((a, b) => {
-        switch (sortBy) {
-          case "votes":
-            return b.votes - a.votes;
-          case "comments":
-            return b.comments - a.comments;
-          case "newest":
-            return b.id - a.id;
-          case "oldest":
-            return a.id - b.id;
-          default:
-            return 0;
-        }
-      });
-
-      topicsGrid.innerHTML = sortedTopics
-        .map((topic) =>
-          renderTopicCard(topic, topicHistory.isTopicPicked(topic.id))
-        )
-        .join("");
-    }
-
-    function displaySelectedTopic(topic) {
-      selectedTopicDiv.innerHTML =
-        '<div class="bg-gradient-to-r from-purple-600/30 to-pink-600/30 rounded-xl p-6 border border-purple-400/50 w-full">' +
-        '<div class="flex items-center gap-2 mb-2">' +
-        '<svg class="w-6 h-6 text-amber-400" fill="currentColor" viewBox="0 0 24 24">' +
-        '<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>' +
-        "</svg>" +
-        '<span class="text-amber-400 font-medium">Selected Topic</span>' +
-        "</div>" +
-        '<h3 class="text-2xl font-bold mb-3">' +
-        topic.title +
-        "</h3>" +
-        '<div class="flex items-center gap-4 text-slate-300 mb-4">' +
-        "<span>by " +
-        topic.author +
-        "</span>" +
-        "<span>" +
-        topic.votes +
-        " votes</span>" +
-        "<span>" +
-        topic.comments +
-        " comments</span>" +
-        "</div>" +
-        '<a href="' +
-        topic.url +
-        '" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-lg hover:bg-white/20 transition-colors">' +
-        "Open Discussion" +
-        '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">' +
-        '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>' +
-        "</svg>" +
-        "</a>" +
-        "</div>";
-    }
-
-    function getUnpickedTopics() {
-      return topics.filter((topic) => !topicHistory.isTopicPicked(topic.id));
+    function displaySelectedTopic(topic: Topic) {
+      const avatarColor = getAvatarColor(topic.author);
+      selectedTopicDiv.innerHTML = `
+        <div class="absolute -right-2 -top-2 rotate-6 rounded-full bg-gradient-to-r from-pink-500 to-rose-500 px-4 py-1 text-xs font-bold text-white shadow-lg z-10">
+          ✨ Picked!
+        </div>
+        <div class="w-full max-w-2xl">
+          <h2 class="mb-6 text-3xl md:text-4xl font-bold text-white leading-tight">
+            ${topic.title}
+          </h2>
+          <div class="flex items-center gap-3 mb-8">
+            <div class="h-10 w-10 rounded-full border-2 border-slate-700 ${avatarColor}"></div>
+            <span class="text-base font-medium text-slate-400">${topic.author}</span>
+          </div>
+          <div class="flex flex-wrap items-center justify-center gap-4">
+            <div class="flex items-center gap-2 rounded-xl bg-pink-500/10 px-4 py-2 text-pink-400">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
+              </svg>
+              <span class="font-bold">${topic.votes} votes</span>
+            </div>
+            <div class="flex items-center gap-2 rounded-xl bg-slate-700/50 px-4 py-2 text-slate-400">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+              </svg>
+              <span class="font-semibold">${topic.comments} comments</span>
+            </div>
+            <a
+              href="${topic.url}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-2 rounded-full bg-white px-6 py-2 text-slate-900 font-bold transition-all hover:scale-105 hover:shadow-lg"
+            >
+              View Discussion
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="flex flex-col gap-4 sm:flex-row mt-8">
+          <button
+            onclick="document.getElementById('pick-btn').click()"
+            class="group relative inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-base font-bold text-slate-900 transition-all hover:-translate-y-1 hover:shadow-[0_10px_30px_-10px_rgba(255,255,255,0.4)] active:scale-95"
+          >
+            <svg class="w-5 h-5 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+            </svg>
+            Pick Another
+          </button>
+        </div>
+      `;
     }
 
     function displayAllPickedMessage() {
-      selectedTopicDiv.innerHTML =
-        '<div class="bg-amber-600/20 rounded-xl p-6 border border-amber-400/50 w-full text-center">' +
-        '<h3 class="text-xl font-bold mb-2 text-amber-400">All topics have been picked!</h3>' +
-        '<p class="text-slate-300">Reset history to start over.</p>' +
-        "</div>";
+      selectedTopicDiv.innerHTML = `
+        <div class="text-center">
+          <h2 class="mb-4 text-3xl md:text-4xl font-bold text-white">
+            🎉 All topics picked!
+          </h2>
+          <p class="text-slate-400 text-lg mb-8">You've gone through all the topics. Reset to start fresh!</p>
+          <button
+            onclick="document.getElementById('reset-history-btn').click()"
+            class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-base font-bold text-slate-900 transition-all hover:-translate-y-1 hover:shadow-[0_10px_30px_-10px_rgba(255,255,255,0.4)] active:scale-95"
+          >
+            🔄 Reset History
+          </button>
+        </div>
+      `;
+    }
+
+    function sortTopics(sortBy: string) {
+      const sorted = [...topics];
+      const pickedIds = topicHistory.getPickedTopicIds();
+
+      switch (sortBy) {
+        case "votes":
+          sorted.sort((a, b) => b.votes - a.votes);
+          break;
+        case "comments":
+          sorted.sort((a, b) => b.comments - a.comments);
+          break;
+        case "newest":
+          sorted.sort((a, b) => b.id - a.id);
+          break;
+        case "oldest":
+          sorted.sort((a, b) => a.id - b.id);
+          break;
+      }
+
+      const unpickedCount = sorted.filter(t => !pickedIds.includes(t.id)).length;
+      topicsCount.textContent = `(${unpickedCount} of ${sorted.length} available)`;
+
+      topicsGrid.innerHTML = sorted
+        .map((topic, index) => {
+          const isPicked = pickedIds.includes(topic.id);
+          const isSelected = topic.id === selectedTopicId;
+          const color = cardColors[index % cardColors.length];
+          const avatarColor = getAvatarColor(topic.author);
+          
+          if (isPicked) {
+            return `
+              <div
+                class="group relative flex flex-col justify-between rounded-[32px] border-2 border-pink-500/50 bg-slate-800/40 p-6 opacity-60 transition-all"
+                data-topic-id="${topic.id}"
+              >
+                <div class="absolute -right-2 -top-2 rotate-6 rounded-full bg-gradient-to-r from-pink-500 to-rose-500 px-4 py-1 text-xs font-bold text-white shadow-lg">
+                  ✨ Picked!
+                </div>
+                <div>
+                  <h4 class="mb-3 text-2xl font-bold leading-tight text-white transition-colors">
+                    ${topic.title}
+                  </h4>
+                  <div class="flex items-center gap-3">
+                    <div class="h-8 w-8 rounded-full border-2 border-slate-700 ${avatarColor}"></div>
+                    <span class="text-sm font-medium text-slate-400">${topic.author}</span>
+                  </div>
+                </div>
+                <div class="mt-8 rounded-2xl bg-slate-900/50 p-2">
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-1 pl-2">
+                      <div class="flex items-center gap-1.5 rounded-lg bg-pink-500/10 px-3 py-1.5 text-pink-400">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
+                        </svg>
+                        <span class="text-sm font-bold">${topic.votes}</span>
+                      </div>
+                      <div class="flex items-center gap-1.5 px-3 py-1.5 text-slate-500">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                        </svg>
+                        <span class="text-sm font-semibold">${topic.comments}</span>
+                      </div>
+                    </div>
+                    <a href="${topic.url}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="flex h-10 w-10 items-center justify-center rounded-full bg-pink-400 text-slate-900 shadow-sm transition-transform hover:scale-110">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            `;
+          }
+          
+          return `
+            <div
+              class="group relative flex flex-col justify-between rounded-[32px] border border-white/5 bg-slate-800/40 p-6 transition-all hover:-translate-y-2 ${color.hover} hover:shadow-xl ${color.shadow} cursor-pointer ${isSelected ? 'ring-2 ring-pink-500' : ''}"
+              data-topic-id="${topic.id}"
+            >
+              <div>
+                <h4 class="mb-3 text-2xl font-bold leading-tight text-slate-100 ${color.text} transition-colors">
+                  ${topic.title}
+                </h4>
+                <div class="flex items-center gap-3">
+                  <div class="h-8 w-8 rounded-full border-2 border-slate-700 ${avatarColor}"></div>
+                  <span class="text-sm font-medium text-slate-400">${topic.author}</span>
+                </div>
+              </div>
+              <div class="mt-8 rounded-2xl bg-slate-900/50 p-2">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-1 pl-2">
+                    <div class="flex items-center gap-1.5 rounded-lg hover:bg-white/5 px-3 py-1.5 text-slate-300 transition-colors">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
+                      </svg>
+                      <span class="text-sm font-bold">${topic.votes}</span>
+                    </div>
+                    <div class="flex items-center gap-1.5 px-3 py-1.5 text-slate-500">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                      </svg>
+                      <span class="text-sm font-semibold">${topic.comments}</span>
+                    </div>
+                  </div>
+                  <a href="${topic.url}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-700 text-white transition-all ${color.btn} group-hover:text-slate-900 hover:scale-110">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          `;
+        })
+        .join("");
     }
 
     function pickRandomTopic() {
@@ -384,46 +450,41 @@ import Layout from "../layouts/Layout.astro";
 
       if (unpickedTopics.length === 0) {
         displayAllPickedMessage();
+        updateResetButtonVisibility();
         return;
       }
 
-      const unpickedIds = new Set(unpickedTopics.map((t) => t.id));
-      const cards = Array.from(document.querySelectorAll(".topic-card")).filter(
-        (card) =>
-          unpickedIds.has(parseInt(card.getAttribute("data-topic-id") || "0"))
-      );
+      const cards = topicsGrid.querySelectorAll(".topic-card:not(.opacity-60), [data-topic-id]:not(.opacity-60)");
+      const unpickedCards = Array.from(cards).filter(card => {
+        const id = parseInt(card.getAttribute("data-topic-id") || "0");
+        return unpickedTopics.some(t => t.id === id);
+      });
+      
+      if (unpickedCards.length === 0) {
+        const randomTopic = unpickedTopics[Math.floor(Math.random() * unpickedTopics.length)];
+        selectedTopicId = randomTopic.id;
+        topicHistory.addPickedTopic(randomTopic.id);
+        displaySelectedTopic(randomTopic);
+        sortTopics(currentSort);
+        updateResetButtonVisibility();
+        return;
+      }
 
       let iterations = 0;
       const maxIterations = 20;
       const interval = setInterval(() => {
-        cards.forEach((card) => {
-          card.classList.remove(
-            "bg-purple-600/40",
-            "border-purple-400",
-            "shadow-lg",
-            "shadow-purple-500/20",
-            "scale-105"
-          );
-          card.classList.add("bg-white/5", "border-white/10");
+        unpickedCards.forEach((card) => {
+          card.classList.remove("ring-2", "ring-pink-500", "scale-105");
         });
 
-        const randomIndex = Math.floor(Math.random() * cards.length);
-        const randomCard = cards[randomIndex];
-        randomCard.classList.remove("bg-white/5", "border-white/10");
-        randomCard.classList.add(
-          "bg-purple-600/40",
-          "border-purple-400",
-          "shadow-lg",
-          "shadow-purple-500/20",
-          "scale-105"
-        );
+        const randomIndex = Math.floor(Math.random() * unpickedCards.length);
+        const randomCard = unpickedCards[randomIndex];
+        randomCard.classList.add("ring-2", "ring-pink-500", "scale-105");
 
         iterations++;
         if (iterations >= maxIterations) {
           clearInterval(interval);
-          const topicId = parseInt(
-            randomCard.getAttribute("data-topic-id") || "0"
-          );
+          const topicId = parseInt(randomCard.getAttribute("data-topic-id") || "0");
           selectedTopicId = topicId;
           const topic = topics.find((t) => t.id === topicId);
           if (topic) {
@@ -431,25 +492,18 @@ import Layout from "../layouts/Layout.astro";
             displaySelectedTopic(topic);
             randomCard.scrollIntoView({ behavior: "smooth", block: "center" });
             sortTopics(currentSort);
+            updateResetButtonVisibility();
           }
         }
       }, 100);
     }
 
     const colors = [
-      "#8b5cf6",
-      "#ec4899",
-      "#f59e0b",
-      "#10b981",
-      "#3b82f6",
-      "#ef4444",
-      "#06b6d4",
-      "#84cc16",
-      "#f97316",
-      "#6366f1",
+      "#ec4899", "#8b5cf6", "#22d3ee", "#34d399", "#fb923c",
+      "#eab308", "#f472b6", "#a78bfa", "#38bdf8", "#4ade80",
     ];
 
-    function drawWheel(topicsToDraw = topics, rotation = 0) {
+    function drawWheel(topicsToDraw: Topic[] = topics, rotation = 0) {
       if (topicsToDraw.length === 0) return;
 
       const ctx = wheelCanvas.getContext("2d");
@@ -475,31 +529,28 @@ import Layout from "../layouts/Layout.astro";
         ctx.closePath();
         ctx.fillStyle = colors[index % colors.length];
         ctx.fill();
-        ctx.strokeStyle = "#1e1b4b";
-        ctx.lineWidth = 2;
+        ctx.strokeStyle = "#0f172a";
+        ctx.lineWidth = 3;
         ctx.stroke();
 
         ctx.save();
         ctx.rotate(startAngle + sliceAngle / 2);
         ctx.textAlign = "right";
         ctx.fillStyle = "white";
-        ctx.font = "bold 10px sans-serif";
-        const text =
-          topic.title.length > 20
-            ? topic.title.substring(0, 17) + "..."
-            : topic.title;
-        ctx.fillText(text, radius - 10, 4);
+        ctx.font = "600 11px Outfit, sans-serif";
+        const text = topic.title.length > 20 ? topic.title.substring(0, 17) + "..." : topic.title;
+        ctx.fillText(text, radius - 15, 4);
         ctx.restore();
       });
 
       ctx.restore();
 
       ctx.beginPath();
-      ctx.arc(centerX, centerY, 20, 0, 2 * Math.PI);
-      ctx.fillStyle = "#1e1b4b";
+      ctx.arc(centerX, centerY, 25, 0, 2 * Math.PI);
+      ctx.fillStyle = "#0f172a";
       ctx.fill();
       ctx.strokeStyle = "white";
-      ctx.lineWidth = 2;
+      ctx.lineWidth = 3;
       ctx.stroke();
     }
 
@@ -515,7 +566,7 @@ import Layout from "../layouts/Layout.astro";
         return;
       }
 
-      if (isSpinning || unpickedTopics.length === 0) return;
+      if (isSpinning) return;
       isSpinning = true;
       wheelResult.classList.add("hidden");
 
@@ -538,12 +589,11 @@ import Layout from "../layouts/Layout.astro";
           isSpinning = false;
           const sliceAngle = (2 * Math.PI) / unpickedTopics.length;
           const normalizedRotation = currentRotation % (2 * Math.PI);
-          const selectedIndex =
-            Math.floor((2 * Math.PI - normalizedRotation) / sliceAngle) %
-            unpickedTopics.length;
+          const selectedIndex = Math.floor((2 * Math.PI - normalizedRotation) / sliceAngle) % unpickedTopics.length;
           const selectedTopic = unpickedTopics[selectedIndex];
 
-          wheelResult.querySelector("p").textContent = selectedTopic.title;
+          const resultP = wheelResult.querySelector("p");
+          if (resultP) resultP.textContent = selectedTopic.title;
           wheelResult.classList.remove("hidden");
 
           selectedTopicId = selectedTopic.id;
@@ -552,6 +602,7 @@ import Layout from "../layouts/Layout.astro";
 
           setTimeout(() => {
             sortTopics(currentSort);
+            updateResetButtonVisibility();
           }, 1000);
         }
       }
@@ -560,15 +611,35 @@ import Layout from "../layouts/Layout.astro";
     }
 
     function resetHistory() {
-      if (
-        confirm(
-          "Are you sure you want to reset the pick history? This will allow all topics to be picked again."
-        )
-      ) {
+      if (confirm("Are you sure you want to reset the pick history? This will allow all topics to be picked again.")) {
         topicHistory.clearHistory();
+        selectedTopicId = null;
         sortTopics(currentSort);
-        selectedTopicDiv.innerHTML =
-          '<p class="text-slate-500 italic">No topic selected yet</p>';
+        selectedTopicDiv.innerHTML = `
+          <h2 class="mb-8 mt-2 text-3xl md:text-4xl font-semibold text-slate-500">
+            🎲 No topic selected yet...
+          </h2>
+          <div class="flex flex-col gap-4 sm:flex-row">
+            <button
+              onclick="document.getElementById('pick-btn').click()"
+              class="group relative inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-base font-bold text-slate-900 transition-all hover:-translate-y-1 hover:shadow-[0_10px_30px_-10px_rgba(255,255,255,0.4)] active:scale-95"
+            >
+              <svg class="w-5 h-5 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+              </svg>
+              Pick Random Topic
+            </button>
+            <button
+              onclick="document.getElementById('spin-btn').click()"
+              class="group inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-8 py-4 text-base font-semibold text-white transition-all hover:bg-white/10 hover:scale-105 active:scale-95"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+              </svg>
+              Spin the Wheel
+            </button>
+          </div>
+        `;
         updateResetButtonVisibility();
       }
     }
@@ -603,7 +674,6 @@ import Layout from "../layouts/Layout.astro";
     });
 
     spinWheelBtn.addEventListener("click", spinWheel);
-
     resetHistoryBtn.addEventListener("click", resetHistory);
 
     sortBtns.forEach((btn) => {
@@ -612,15 +682,22 @@ import Layout from "../layouts/Layout.astro";
         currentSort = sortBy;
 
         sortBtns.forEach((b) => {
-          b.classList.remove("bg-purple-600/30", "border-purple-500/50");
-          b.classList.add("bg-white/5", "border-white/10");
+          b.classList.remove("active", "bg-pink-500", "text-white", "shadow-lg", "shadow-pink-500/20");
+          b.classList.add("text-slate-400");
         });
-        btn.classList.remove("bg-white/5", "border-white/10");
-        btn.classList.add("bg-purple-600/30", "border-purple-500/50");
+        btn.classList.add("active", "bg-pink-500", "text-white", "shadow-lg", "shadow-pink-500/20");
+        btn.classList.remove("text-slate-400");
 
         sortTopics(sortBy);
       });
     });
+
+    // Initialize first sort button style
+    const firstSortBtn = document.querySelector('[data-sort="votes"]');
+    if (firstSortBtn) {
+      firstSortBtn.classList.add("bg-pink-500", "text-white", "shadow-lg", "shadow-pink-500/20");
+      firstSortBtn.classList.remove("text-slate-400");
+    }
 
     topics = staticTopics;
     updateStats();
@@ -636,9 +713,3 @@ import Layout from "../layouts/Layout.astro";
     init();
   }
 </script>
-
-<style>
-  .border-r-12 {
-    border-right-width: 12px;
-  }
-</style>
