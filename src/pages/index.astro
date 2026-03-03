@@ -368,7 +368,7 @@ import Layout from "../layouts/Layout.astro";
     }
 
     function getUnpickedTopics() {
-      return topics.filter((topic) => !topicHistory.isTopicPicked(topic.id));
+      return topics.filter((topic) => topic.status === 'open' && !topicHistory.isTopicPicked(topic.id));
     }
 
     function displayAllPickedMessage() {

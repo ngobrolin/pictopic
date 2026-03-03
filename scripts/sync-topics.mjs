@@ -87,6 +87,7 @@ async function fetchDiscussions() {
                 number
                 title
                 url
+                closed
                 author {
                   login
                 }
@@ -132,6 +133,7 @@ async function fetchDiscussions() {
     author: d.author?.login || 'unknown',
     votes: d.upvoteCount,
     comments: d.comments.totalCount,
+    status: d.closed ? 'closed' : 'open',
   }));
 }
 

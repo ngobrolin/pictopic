@@ -6,6 +6,7 @@ export interface Topic {
   votes: number;
   comments: number;
   category?: string;
+  status: 'open' | 'closed';
 }
 
 export interface TopicHistory {
