@@ -2,12 +2,22 @@ import type { Topic } from '../types/topic';
 
 export const topics: Topic[] = [
   {
+    id: 96,
+    title: 'Web Scraping',
+    url: 'https://github.com/orgs/ngobrolin/discussions/96',
+    author: 'SumertaYasa',
+    votes: 1,
+    comments: 0,
+    status: 'open'
+  },
+  {
     id: 95,
     title: 'Bedah framework: LynxJS',
     url: 'https://github.com/orgs/ngobrolin/discussions/95',
     author: 'rizafahmi',
     votes: 1,
-    comments: 0
+    comments: 0,
+    status: 'open'
   },
   {
     id: 94,
