@@ -2,6 +2,15 @@ import type { Topic } from '../types/topic';
 
 export const topics: Topic[] = [
   {
+    id: 97,
+    title: 'Model Bisnis AI Provider, Efisiensi Token & Benchmarking Praktis untuk Developer',
+    url: 'https://github.com/orgs/ngobrolin/discussions/97',
+    author: 'lyrihkaesa',
+    votes: 1,
+    comments: 0,
+    status: 'open'
+  },
+  {
     id: 96,
     title: 'Web Scraping',
     url: 'https://github.com/orgs/ngobrolin/discussions/96',
