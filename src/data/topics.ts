@@ -2,6 +2,15 @@ import type { Topic } from '../types/topic';
 
 export const topics: Topic[] = [
   {
+    id: 98,
+    title: 'Bedah Framework: Anvia - Typescript AI Agent Builder',
+    url: 'https://github.com/orgs/ngobrolin/discussions/98',
+    author: 'indrazm',
+    votes: 2,
+    comments: 1,
+    status: 'open'
+  },
+  {
     id: 97,
     title: 'Model Bisnis AI Provider, Efisiensi Token & Benchmarking Praktis untuk Developer',
     url: 'https://github.com/orgs/ngobrolin/discussions/97',
@@ -24,7 +33,7 @@ export const topics: Topic[] = [
     title: 'Bedah framework: LynxJS',
     url: 'https://github.com/orgs/ngobrolin/discussions/95',
     author: 'rizafahmi',
-    votes: 1,
+    votes: 2,
     comments: 0,
     status: 'open'
   },
