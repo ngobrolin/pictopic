@@ -6,7 +6,7 @@ export const topics: Topic[] = [
     title: 'Bedah Framework: Anvia - Typescript AI Agent Builder',
     url: 'https://github.com/orgs/ngobrolin/discussions/98',
     author: 'indrazm',
-    votes: 2,
+    votes: 3,
     comments: 1,
     status: 'open'
   },
