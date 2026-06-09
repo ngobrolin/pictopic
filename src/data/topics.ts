@@ -89,7 +89,7 @@ export const topics: Topic[] = [
     author: 'rizafahmi',
     votes: 2,
     comments: 0,
-    status: 'open'
+    status: 'closed'
   },
   {
     id: 88,
@@ -413,7 +413,7 @@ export const topics: Topic[] = [
     author: 'rizafahmi',
     votes: 2,
     comments: 1,
-    status: 'open'
+    status: 'closed'
   },
   {
     id: 52,
