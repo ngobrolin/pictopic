@@ -7,7 +7,7 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/98',
     author: 'indrazm',
     votes: 3,
-    comments: 1,
+    comments: 2,
     status: 'open'
   },
   {
