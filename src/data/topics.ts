@@ -8,7 +8,7 @@ export const topics: Topic[] = [
     author: 'indrazm',
     votes: 3,
     comments: 2,
-    status: 'open'
+    status: 'closed'
   },
   {
     id: 97,
@@ -142,7 +142,7 @@ export const topics: Topic[] = [
     url: 'https://github.com/orgs/ngobrolin/discussions/83',
     author: 'rizafahmi',
     votes: 2,
-    comments: 1,
+    comments: 0,
     status: 'open'
   },
   {
