@@ -719,7 +719,7 @@ export const topics: Topic[] = [
     author: 'rizafahmi',
     votes: 7,
     comments: 0,
-    status: 'open'
+    status: 'closed'
   },
   {
     id: 18,
