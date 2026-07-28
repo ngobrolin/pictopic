@@ -2,6 +2,15 @@ import type { Topic } from '../types/topic';
 
 export const topics: Topic[] = [
   {
+    id: 99,
+    title: 'Pengaruh AI coding terhadap cognitive disfunction',
+    url: 'https://github.com/orgs/ngobrolin/discussions/99',
+    author: 'rizafahmi',
+    votes: 1,
+    comments: 1,
+    status: 'open'
+  },
+  {
     id: 98,
     title: 'Bedah Framework: Anvia - Typescript AI Agent Builder',
     url: 'https://github.com/orgs/ngobrolin/discussions/98',
