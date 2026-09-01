@@ -222,7 +222,7 @@ export const topics: Topic[] = [
     title: 'Shopify Front Store',
     url: 'https://github.com/orgs/ngobrolin/discussions/75',
     author: 'mazipan',
-    votes: 1,
+    votes: 2,
     comments: 0,
     status: 'open'
   },
